@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ListPresenterCallback {
 
-    void itemIsAdded();
+    void itemIsAdded(ShoppingItem item);
     void itemNotAdded();
     void itemMarkAsPurchased();
     void itemNotMarkAsPurchased();

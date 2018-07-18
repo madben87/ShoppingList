@@ -71,7 +71,7 @@ public class AddItemActivity extends AppCompatActivity implements AddItemView {
                 addItemDescr.setText(savedInstanceState.getString(STATE_DESCR));
             }
             if (savedInstanceState.containsKey(STATE_IMAGE)) {
-                image = ImageUtil.byteToBitmap(savedInstanceState.getByteArray(STATE_IMAGE));
+                image = savedInstanceState.getParcelable(STATE_IMAGE);
                 addItemImage.setImageBitmap(image);
             }
         }
@@ -87,6 +87,7 @@ public class AddItemActivity extends AppCompatActivity implements AddItemView {
         switch (view.getId()) {
             case R.id.addItemSave:
                 presenter.addNewItem(addItemName.getText().toString(), addItemDescr.getText().toString(), image);
+                image = null;
                 break;
             case R.id.addImageCamera:
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -150,9 +151,17 @@ public class AddItemActivity extends AppCompatActivity implements AddItemView {
             e.printStackTrace();
         }
         if (bitmap != null) {
-            outState.putByteArray(STATE_IMAGE, ImageUtil.bitmapToByte(bitmap));
+            try {
+                outState.putParcelable(STATE_IMAGE, bitmap);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        super.onSaveInstanceState(outState);
+        try {
+            super.onSaveInstanceState(outState);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

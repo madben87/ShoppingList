@@ -20,7 +20,7 @@ public class ShoppingHistoryPresenterImpl implements ShoppingHistoryPresenter<Sh
     }
 
     @Override
-    public void itemIsAdded() {
+    public void itemIsAdded(ShoppingItem item) {
 
     }
 

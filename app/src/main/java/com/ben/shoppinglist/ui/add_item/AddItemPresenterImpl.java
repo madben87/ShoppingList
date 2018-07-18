@@ -59,9 +59,10 @@ public class AddItemPresenterImpl implements AddItemPresenter<AddItemView>, List
     }
 
     @Override
-    public void itemIsAdded() {
+    public void itemIsAdded(ShoppingItem item) {
         view.showMessage("Item is added");
         view.launchActivity(MainActivity.class);
+        this.item = new ShoppingItem();
     }
 
     @Override

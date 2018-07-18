@@ -9,7 +9,7 @@ public class ImageUtil {
 
     public static byte[] bitmapToByte(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 10, stream);
         return stream.toByteArray();
     }
 

@@ -4,6 +4,7 @@ package com.ben.shoppinglist.ui.fragments.shopping_list;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import com.ben.shoppinglist.R;
 import com.ben.shoppinglist.core.App;
 import com.ben.shoppinglist.ui.fragments.ListFragment;
+import com.ben.shoppinglist.ui.fragments.adapter.ShoppingListAdapter;
+import com.ben.shoppinglist.ui.fragments.adapter.ShoppingListAdapterImpl;
 
 import javax.inject.Inject;
 
@@ -27,6 +30,8 @@ public class ShoppingListFragment extends ListFragment implements ShoppingListVi
 
     @Inject
     ShoppingListPresenterImpl presenter;
+    @Inject
+    ShoppingListAdapterImpl listAdapter;
 
     public ShoppingListFragment() {
         // Required empty public constructor
@@ -44,7 +49,18 @@ public class ShoppingListFragment extends ListFragment implements ShoppingListVi
 
         presenter.attachView(this);
 
+        resView.setHasFixedSize(true);
+        resView.setLayoutManager(new LinearLayoutManager(getContext()));
+        resView.setAdapter(listAdapter);
+
+        presenter.updateList();
+
         return view;
+    }
+
+    @Override
+    public ShoppingListAdapterImpl getListAdapter() {
+        return listAdapter;
     }
 
     @Override

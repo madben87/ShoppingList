@@ -2,6 +2,7 @@ package com.ben.shoppinglist.core;
 
 import android.app.Application;
 
+import com.ben.shoppinglist.module.AdapterModule;
 import com.ben.shoppinglist.module.ContextModule;
 import com.ben.shoppinglist.module.DataModule;
 import com.ben.shoppinglist.module.PresenterModule;
@@ -31,6 +32,7 @@ public class App extends Application {
         screenInjector = DaggerScreenInjector
                 .builder()
                 .presenterModule(new PresenterModule())
+                .adapterModule(new AdapterModule())
                 .build();
     }
 

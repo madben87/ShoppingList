@@ -10,13 +10,14 @@ import com.ben.shoppinglist.data.room.model.ShoppingItem;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 
 @Dao
 public interface ShoppingItemsDao {
 
     @Query("SELECT * FROM shopping_items")
-    Maybe<List<ShoppingItem>> getAll();
+    Flowable<List<ShoppingItem>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ShoppingItem item);
