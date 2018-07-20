@@ -57,8 +57,8 @@ public class ShoppingListPresenterImpl implements ShoppingListPresenter<Shopping
     }
 
     @Override
-    public void showList(List<ShoppingItem> list) {
-        view.getListAdapter().addList(list);
+    public void showList(List<?> list) {
+        view.getListAdapter().addList((List<ShoppingItem>) list);
         view.getListAdapter().notifyDataSetChanged();
     }
 }

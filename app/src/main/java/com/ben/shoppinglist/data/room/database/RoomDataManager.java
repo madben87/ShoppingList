@@ -5,8 +5,10 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import com.ben.shoppinglist.data.DataManager;
+import com.ben.shoppinglist.data.room.model.HistoryItem;
 import com.ben.shoppinglist.data.room.model.ShoppingItem;
 import com.ben.shoppinglist.data.ListPresenterCallback;
+import com.ben.shoppinglist.util.DAOUtil;
 
 import org.reactivestreams.Publisher;
 
@@ -72,9 +74,17 @@ public class RoomDataManager implements DataManager {
                 });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getHistoryItems(final ListPresenterCallback callback) {
-
+        db.historyItemDao().getAll()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<HistoryItem>>() {
+                    @Override
+                    public void accept(List<HistoryItem> list) throws Exception {
+                        callback.showList(list);
+                    }
+                });
     }
 
     @Override
@@ -83,9 +93,10 @@ public class RoomDataManager implements DataManager {
             @Override
             public void run() throws Exception {
                 db.shoppingItemsDao().delete(item);
+                db.historyItemDao().insert(DAOUtil.createHistoryItem(item));
             }
-        }).observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(new CompletableObserver() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -110,9 +121,10 @@ public class RoomDataManager implements DataManager {
             @Override
             public void run() throws Exception {
                 db.shoppingItemsDao().delete(item);
+                db.historyItemDao().insert(DAOUtil.createHistoryList(item));
             }
-        }).observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(new CompletableObserver() {
                     @Override
                     public void onSubscribe(Disposable d) {

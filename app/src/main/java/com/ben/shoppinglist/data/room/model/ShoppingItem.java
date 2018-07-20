@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 @Entity(tableName = "shopping_items")
-public class ShoppingItem {
+public class ShoppingItem implements Item {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

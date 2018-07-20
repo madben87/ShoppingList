@@ -8,7 +8,7 @@ import java.util.List;
 public interface MainPresenter<V extends MainView> extends Presenter<V> {
 
     //void addNewItem(ShoppingItem item);
-    //void markAsPurchased(ShoppingItem item);
-    //void markAsPurchased(List<ShoppingItem> item);
+    void markAsPurchased(ShoppingItem item);
+    void markAsPurchased(List<ShoppingItem> item);
     //void showShoppingList();
 }

@@ -1,5 +1,6 @@
 package com.ben.shoppinglist.ui.add_item;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 
 import com.ben.shoppinglist.core.App;
@@ -44,6 +45,8 @@ public class AddItemPresenterImpl implements AddItemPresenter<AddItemView>, List
         }else {
             if (!name.isEmpty()) {
                 item.setName(name);
+            }else {
+                item.setName("image item");
             }
 
             if (!descr.isEmpty()) {
@@ -61,7 +64,7 @@ public class AddItemPresenterImpl implements AddItemPresenter<AddItemView>, List
     @Override
     public void itemIsAdded(ShoppingItem item) {
         view.showMessage("Item is added");
-        view.launchActivity(MainActivity.class);
+        view.launchActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.item = new ShoppingItem();
     }
 
@@ -81,7 +84,7 @@ public class AddItemPresenterImpl implements AddItemPresenter<AddItemView>, List
     }
 
     @Override
-    public void showList(List<ShoppingItem> list) {
+    public void showList(List<?> list) {
 
     }
 }

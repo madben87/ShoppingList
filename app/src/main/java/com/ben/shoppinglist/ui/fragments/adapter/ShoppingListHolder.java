@@ -33,6 +33,8 @@ public class ShoppingListHolder extends RecyclerView.ViewHolder implements Adapt
     TextView tvDescription;
     @BindView(R.id.itemImage)
     ImageView itemImage;
+    @BindView(R.id.cbLayout)
+    FrameLayout cbLayout;
 
     private ItemClick itemClick;
     private LongItemClick itemLongClick;
@@ -45,7 +47,7 @@ public class ShoppingListHolder extends RecyclerView.ViewHolder implements Adapt
         cardBtn.setOnClickListener(this);
         cbItem.setOnClickListener(this);
         itemImage.setOnClickListener(this);
-        cardListItem.setOnLongClickListener(this);
+        cardBtn.setOnLongClickListener(this);
     }
 
     @Override

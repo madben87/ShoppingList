@@ -2,6 +2,7 @@ package com.ben.shoppinglist.module;
 
 import com.ben.shoppinglist.core.ScreenScope;
 import com.ben.shoppinglist.ui.add_item.AddItemPresenterImpl;
+import com.ben.shoppinglist.ui.fragments.shopping_history.ShoppingHistoryPresenterImpl;
 import com.ben.shoppinglist.ui.main.MainPresenterImpl;
 import com.ben.shoppinglist.ui.fragments.shopping_list.ShoppingListPresenterImpl;
 
@@ -20,6 +21,10 @@ public class PresenterModule {
     @ScreenScope
     @Provides
     public ShoppingListPresenterImpl providesShoppingListPresenter() {return new ShoppingListPresenterImpl();}
+
+    @ScreenScope
+    @Provides
+    public ShoppingHistoryPresenterImpl providesHistoryListPresenter() {return new ShoppingHistoryPresenterImpl();}
 
     @ScreenScope
     @Provides

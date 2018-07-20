@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface MainView extends MVPView {
 
-    //void showList(List<ShoppingItem> list);
-    //void updateList();
 }

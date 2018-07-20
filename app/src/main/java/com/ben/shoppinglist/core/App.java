@@ -33,6 +33,7 @@ public class App extends Application {
                 .builder()
                 .presenterModule(new PresenterModule())
                 .adapterModule(new AdapterModule())
+                .appInjector(appInjector)
                 .build();
     }
 

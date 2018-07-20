@@ -10,5 +10,5 @@ public interface ListPresenterCallback {
     void itemNotAdded();
     void itemMarkAsPurchased();
     void itemNotMarkAsPurchased();
-    void showList(List<ShoppingItem> list);
+    void showList(List<?> list);
 }

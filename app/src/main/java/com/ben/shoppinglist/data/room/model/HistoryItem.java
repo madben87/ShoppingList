@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 @Entity(tableName = "history_items")
-public class HistoryItem {
+public class HistoryItem implements Item {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
